@@ -14,10 +14,16 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {useNewUrlParser:true})
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {useNewUrlParser:true});
 
-require("./controllers/html-routes.js")(app)
-// require("./controllers/api-routes.js")(app)
+
+app.get("/",(req,res)=> {
+    res.sendFile("/index.html");
+})
+
+app.get("/exercise", (req,res)=> {
+    res.sendFile("/exercise.html");
+})
 
 app.listen(PORT, ()=> {
     console.log(`${PORT} is listening`);
