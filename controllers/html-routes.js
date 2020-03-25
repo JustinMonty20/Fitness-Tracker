@@ -1,6 +1,6 @@
 const path = require("path");
 // const db = require("./models");
-module.exports = function (app) {
+module.exports = (app) => {
     app.get("/",(req,res)=> {
         res.sendFile(path.join(__dirname, "../public/index.html"));
     })
