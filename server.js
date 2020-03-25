@@ -11,11 +11,13 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+
 app.use(express.static("public"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessTrack", {useNewUrlParser:true})
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {useNewUrlParser:true})
 
-
+require("./controllers/html-routes.js")(app)
+// require("./controllers/api-routes.js")(app)
 
 app.listen(PORT, ()=> {
     console.log(`${PORT} is listening`);
