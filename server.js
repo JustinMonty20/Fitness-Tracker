@@ -17,13 +17,8 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {useNewUrlParser:true});
 
 
-app.get("/",(req,res)=> {
-    res.sendFile("/index.html");
-})
+require("./controllers/routes.js")(app);
 
-app.get("/exercise", (req,res)=> {
-    res.sendFile("/exercise.html");
-})
 
 app.listen(PORT, ()=> {
     console.log(`${PORT} is listening`);
